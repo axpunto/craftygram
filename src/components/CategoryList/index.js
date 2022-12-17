@@ -2,12 +2,14 @@ import React from 'react'
 import { Category } from '../Category'
 import { List } from './styles'
 
+const { categories } = require('../../../api/db.json');
+
 export const CategoryList = () => (
     <List>
         {
-            [1,2,3,4,5,6,7,8,9].map(() => (
-                <li>
-                    <Category/>
+            categories.map(category => (
+                <li key={category.id}>
+                    <Category {...category}/>
                 </li>
             ))
         }
