@@ -3,8 +3,6 @@ import { PhotoCard } from "../PhotoCard";
 
 const { photos } = require('../../../api/db.json');
 
-console.log('photos:: ', photos);
-
 export const PhotoCardList = () => (
     <ul>
         {
