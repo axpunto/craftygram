@@ -1,12 +1,13 @@
 import React from "react";
 import { PhotoCard } from "../PhotoCard";
+import { Ul } from "./styles";
 
 const { photos } = require('../../../api/db.json');
 
 export const PhotoCardList = () => (
-    <ul>
+    <Ul>
         {
             photos.map(photo => <PhotoCard key={ photo.id } { ...photo }/>)
         }
-    </ul>
+    </Ul>
 )

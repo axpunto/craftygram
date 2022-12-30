@@ -10,6 +10,12 @@ export const ImgWrapper = styled.div`
     width: 100%;
 `
 
+export const Ul = styled.ul`
+    padding: 0;
+    list-style: none;
+    margin: 20px;
+`
+
 export const Img = styled.img`
     box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
     height: 100%;
