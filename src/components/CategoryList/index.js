@@ -1,38 +1,55 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Category } from '../Category'
-import { List } from './styles'
+import { Ul } from './styles'
 
 const { categories } = require('../../../api/db.json')
 
-export const CategoryList = () => {
-    const [showFixed, setShowFixed] = useState(false)
+// custom hook must be declared before functional component 
+const initApiCall = () => {
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        const onScroll = e => {
+        !loading && setTimeout(() => setLoading(true), 2000)
+    }, [])
+    
+    // custom hooks must return something
+    return loading
+}
+
+export const CategoryList = () => {
+    const loader = initApiCall()
+    
+    // state hook
+    const [showFixed, setShowFixed] = useState(false)
+
+    // effect hook
+    useEffect(() => {
+        const onScroll = () => {
             const newShowFixed = window.scrollY > 200
             showFixed !== newShowFixed && setShowFixed(newShowFixed)
         }
+
         document.addEventListener('scroll', onScroll)
     })
 
-    const renderList = (fixed) => {
+    const renderCategoryList = (fixed) => {
         return (
-            <List fixed={fixed}>
+            <Ul fixed={fixed}>
                 {
                     categories.map(category => (
                         <li key={category.id}>
-                            <Category {...category}/>
+                            { loader ? <Category {...category}/> : <Category/> }
                         </li>
                     ))
                 }
-            </List>
+            </Ul>
         )
     }
 
     return (
         <Fragment>
-            {renderList()}
-            { showFixed && renderList(true)}
+            { renderCategoryList() }
+            { showFixed && renderCategoryList(true)}
         </Fragment>
 
     )

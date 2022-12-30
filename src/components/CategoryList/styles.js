@@ -2,12 +2,14 @@ import styled from "styled-components";
 import { fadeIn } from "../../styles/animation";
 import { css } from "styled-components";
 
-export const List = styled.ul`
+export const Ul = styled.ul`
     display: flex;
     flex-direction: row;
     width: 100%;
     overflow: scroll;
     list-style: none;
+    padding: 15px 0px;
+    ${fadeIn({time: '1s'})}
     ${props => props.fixed && css`
         background-color: #fff;
         border-radius: 60px;
